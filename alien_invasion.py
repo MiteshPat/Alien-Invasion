@@ -15,7 +15,7 @@ class AlienInvasion:
         self.settings.screen_height = self.screen.get_rect().height
 
         # game runs at a certain frame time 
-        pygame.display.set_caption("Alien Invasion")
+        pygame.display.set_caption("AlienInvasion")
         self.ship = Ship(self) # call ship after screen to avoid error
       
     
@@ -46,6 +46,10 @@ class AlienInvasion:
             self.ship.moving_right = True
         elif event.key == pygame.K_LEFT:
             self.ship.moving_left = True
+        elif event.key == pygame.K_UP:
+            self.ship.moving_up = True
+        elif event.key == pygame.K_DOWN:
+            self.ship.moving_down = True
         #exit game with keypress q
         elif event.key == pygame.K_q:
             sys.exit()
@@ -56,6 +60,10 @@ class AlienInvasion:
             self.ship.moving_right = False
         elif event.key == pygame.K_LEFT:
             self.ship.moving_left = False
+        elif event.key == pygame.K_UP:
+            self.ship.moving_up = False
+        elif event.key == pygame.K_DOWN:
+            self.ship.moving_down = False
 
     def _update_screen(self):
          #update images on screen, flip to new screen
@@ -68,5 +76,6 @@ if __name__ == '__main__':
         # make a game instance and run the game
         ai = AlienInvasion()
         ai.run_game()
+        
 
         
