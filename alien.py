@@ -11,11 +11,12 @@ class Alien(Sprite):
 
         # load alien and set it's rect attribute
         self.image = pygame.image.load('images/alien.bmp')
+        self.image = pygame.transform.rotate(self.image, 90)
         self.rect = self.image.get_rect()
 
         # start each new alien near the top of the screen           2540 1440
-        self.rect.x = (self.rect.width)
-        self.rect.y = (self.rect.height)
+        self.rect.x = self.rect.width
+        self.rect.y = self.rect.height
 
         # store alien's exact diagonal position
         self.y = float(self.rect.y)
