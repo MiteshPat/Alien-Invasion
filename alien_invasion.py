@@ -142,7 +142,7 @@ class AlienInvasion:
 
         if pygame.sprite.spritecollideany(self.ship, self.aliens):
             self._ship_hit()
-            self._check_aliens_left()
+        self._check_aliens_left()
         
     def _update_screen(self):
          # update images on screen, flip to new screen
@@ -177,10 +177,10 @@ class AlienInvasion:
             self.game_active = False
 
     def _check_aliens_left(self):
-        print('hello')
+        
         # check if any aliens have reached the left of the screen
         for alien in self.aliens.sprites():
-            if alien.rect.left <= self.settings.screen_width :
+            if alien.rect.left < 0 :
                 # treat this the same as ship got hit
                 
                 self._ship_hit()
