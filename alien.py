@@ -1,4 +1,5 @@
 import pygame
+from random import randint
 from pygame.sprite import Sprite
 
 class Alien(Sprite):
@@ -11,22 +12,18 @@ class Alien(Sprite):
 
         # load alien and set it's rect attribute
         self.image = pygame.image.load('images/alien.bmp')
-        self.image = pygame.transform.rotate(self.image, 90)
+        # self.image = pygame.transform.rotate(self.image, 90)
         self.rect = self.image.get_rect()
 
-        # start each new alien near the top of the screen           2540 1440
-        self.rect.x = self.rect.width
-        self.rect.y = self.rect.height
+        # start each new alien random position right side
+        self.rect.left = self.screen.get_rect().right
 
-        # store alien's exact diagonal position
-        self.y = float(self.rect.y)
-
-    def check_edges(self):
-        # return true if alien is at edge of screen
-        screen_rect = self.screen.get_rect()
-        return (self.rect.bottom >= screen_rect.bottom) or (self.rect.top <= 0)
+        # check to ensure doesn't go above height of screen
+        alien_top_max = self.settings.screen_height - self.rect.height
+        self.rect.top = randint(0, alien_top_max)
+        self.x = float(self.rect.x)
 
     def update(self):
         # move alien to the right or left
-        self.y -= self.settings.alien_speed * self.settings.fleet_direction
-        self.rect.y = self.y
+        self.x -= self.settings.alien_speed
+        self.rect.x = self.x
