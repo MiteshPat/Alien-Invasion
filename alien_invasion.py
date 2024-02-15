@@ -26,6 +26,8 @@ class AlienInvasion:
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
         self._create_fleet()
+        # start alien invasion in active state
+        self.game_active = True
 
     def _create_fleet(self):
         # create an alien and keep adding until no room left.
@@ -56,13 +58,15 @@ class AlienInvasion:
         # start main loop of game
         while True:
             self._check_events()
-            self.ship.update()
-            self._update_bullets()
-            self._update_aliens()
-            self._update_screen()
-    
-            self.clock.tick(60)
-            # runs at 60 frames
+            if self.game_active:
+
+                self.ship.update()
+                self._update_bullets()
+                self._update_aliens()
+                self._update_screen()
+                # runs at 60 frames
+                self.clock.tick(60)
+            
 
     def _check_events(self):
          # watch for keyboard/mouse events
@@ -159,18 +163,22 @@ class AlienInvasion:
     def _ship_hit(self):
         # respond to ship being hit by alien
         # decrement ships left
-        self.stats.ships_left -= 1
+        if self.stats.ships_left > 0:
+            self.stats.ships_left -= 1
 
         # get rid of any remaining bullets and aliens
-        self.bullets.empty()
-        self.aliens.empty()
+            self.bullets.empty()
+            self.aliens.empty()
 
         # create new fleet and center ship
-        self._create_fleet()
-        self.ship.center_ship()
+            self._create_fleet()
+            self.ship.center_ship()
 
         # pause
-        sleep(0.5)
+            sleep(0.5)
+        else:
+            self.game_active = False
+    
 
     def _check_aliens_bottom(self):
         # check if any aliens have reached the bottom of the screen
