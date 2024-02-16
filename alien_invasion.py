@@ -15,9 +15,9 @@ class AlienInvasion:
         self.settings = Settings()
         self.clock = pygame.time.Clock()
         
-        self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
-        self.settings.screen_width = self.screen.get_rect().width
-        self.settings.screen_height = self.screen.get_rect().height
+        self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
+        # self.settings.screen_width = self.screen.get_rect().width
+        # self.settings.screen_height = self.screen.get_rect().height
 
         self.stats = GameStats(self)
 
@@ -93,6 +93,10 @@ class AlienInvasion:
             self.stats.reset_stats()
             self.game_active = True
 
+            #reset the game settings
+            self.settings.initialize_dynamic_settings()
+
+
             # get rid of any remaining bullets and aliens
             self.bullets.empty()
             self.aliens.empty()
@@ -148,6 +152,7 @@ class AlienInvasion:
             # destroy existing bullets and create new fleet
             self.bullets.empty()
             self._create_fleet()
+            self.settings.increase_speed()
 
     def _check_fleet_edges(self):
         # respond if alien reaches edge
