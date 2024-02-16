@@ -119,6 +119,7 @@ class AlienInvasion:
            self.stats.reset_stats()
            self.sb._prep_score()
            self.sb.prep_level()
+           self.sb.prep_ships()
     
     def _check_difficulty_buttons(self, mouse_pos):
         easy_button_clicked = self.easy_button.rect.collidepoint(mouse_pos)
@@ -265,6 +266,9 @@ class AlienInvasion:
         # decrement ships left
         print(self.stats.ships_left)
         if self.stats.ships_left > 0:
+
+            self.sb.prep_ships()
+            
             self.stats.ships_left -= 1
 
         # get rid of any remaining bullets and aliens

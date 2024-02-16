@@ -19,7 +19,7 @@ class Settings:
 
         # alien settings
         # self.alien_speed = 3
-        self.fleet_drop_speed = 50
+        self.fleet_drop_speed = 10
         # fleet direction of 1 represents right; -1 represents left
         self.fleet_direction = 1
 
@@ -28,7 +28,7 @@ class Settings:
         self.ship_limit = 3
 
         #game settings
-        self.speedup_scale = 1.1
+        self.speedup_scale = 1.05
         self.score_scale = 1.5
         self.difficulty_level = 'medium'
         self.initialize_dynamic_settings()
@@ -48,7 +48,7 @@ class Settings:
             self.ship_limit = 3
             self.ship_speed = 5
             self.bullet_speed = 5
-            self.alien_speed = 1
+            self.alien_speed = 0.75
             self.alien_points = 50
            
         elif self.difficulty_level == 'hard':
@@ -56,7 +56,7 @@ class Settings:
             self.ship_limit = 1
             self.ship_speed = 5
             self.bullet_speed = 3
-            self.alien_speed = 1.5
+            self.alien_speed = 1
             self.alien_points = 100
 
         self.fleet_direction = 1
