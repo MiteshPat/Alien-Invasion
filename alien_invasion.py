@@ -118,6 +118,7 @@ class AlienInvasion:
            self._start_game()
            self.stats.reset_stats()
            self.sb._prep_score()
+           self.sb.prep_level()
     
     def _check_difficulty_buttons(self, mouse_pos):
         easy_button_clicked = self.easy_button.rect.collidepoint(mouse_pos)
@@ -211,6 +212,10 @@ class AlienInvasion:
             self.bullets.empty()
             self._create_fleet()
             self.settings.increase_speed()
+
+            # increase level
+            self.stats.level += 1
+            self.sb.prep_level()
 
     def _check_fleet_edges(self):
         # respond if alien reaches edge
