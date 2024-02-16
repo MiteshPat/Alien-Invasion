@@ -29,6 +29,7 @@ class Settings:
 
         #game settings
         self.speedup_scale = 1.1
+        self.score_scale = 1.5
         self.difficulty_level = 'medium'
         self.initialize_dynamic_settings()
 
@@ -40,6 +41,7 @@ class Settings:
             self.ship_speed = 5
             self.bullet_speed = 10
             self.alien_speed = 0.5
+            self.alien_points = 25
         
         elif self.difficulty_level == 'medium':
             self.bullets_allowed = 5
@@ -47,6 +49,7 @@ class Settings:
             self.ship_speed = 5
             self.bullet_speed = 5
             self.alien_speed = 1
+            self.alien_points = 50
            
         elif self.difficulty_level == 'hard':
             self.bullets_allowed = 3
@@ -54,6 +57,7 @@ class Settings:
             self.ship_speed = 5
             self.bullet_speed = 3
             self.alien_speed = 1.5
+            self.alien_points = 100
 
         self.fleet_direction = 1
   
@@ -62,6 +66,7 @@ class Settings:
         self.speedup_scale *= self.speedup_scale
         self.bullet_speed *= self.speedup_scale
         self.alien_speed *= self.speedup_scale
+        self.alien_points = int(self.alien_points * self.score_scale)
 
     def set_difficulty(self, diff_setting):
         if diff_setting == 'easy':
